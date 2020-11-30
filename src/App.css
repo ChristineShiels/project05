@@ -14,9 +14,7 @@ ul {list-style-type: none;}
 figure{margin:0;}
 /* End Setup */
 
-/*  font-family: 'Forum', cursive;
-
-    font-family: 'Pompiere', cursive; */
+/* trying out a mobile first design this time */
 
 /* global styles */
 body {
@@ -24,6 +22,7 @@ body {
   font-size: 2rem;
   text-align: center;
   color: rgb(34, 34, 34);
+  background-image: url(./assets/lightpaperfibers.png);
 }
 
 .wrapper {
@@ -35,8 +34,9 @@ body {
   align-items: center;
   max-height: 100vh;
 }
-.landingPage {
-  max-height: 100vh;
+
+ul {
+  padding: 0;
 }
 
 h1{
@@ -45,7 +45,7 @@ h1{
   margin: 2% 0;
 }
 
-h2, button {
+h2, h4, button {
   font-family: 'Corben', cursive;
 }
 
@@ -53,6 +53,30 @@ h2 {
   margin: 1% 0 5% 0;
   text-transform: capitalize;
   font-size: 3rem;
+}
+
+h4 {
+  padding: 0;
+  margin: 0;
+}
+
+.myTastings h2{
+  font-size: 4rem;
+}
+
+img {
+  margin: 5% 0 10% 0;
+  box-shadow: 3px -3px 0 3px rgb(34, 34, 34), -3px 3px 0  rgb(34, 34, 34);
+}
+
+a {
+  color: #31dbae;
+}
+
+/* landing page styles */
+
+.landingPage {
+  max-height: 100vh;
 }
 
 .landingPage button {
@@ -65,26 +89,54 @@ h2 {
   text-transform: capitalize;
   border: none;
   box-shadow: 3px -3px 0 3px rgb(34, 34, 34), -3px 3px 0  rgb(34, 34, 34);
+  transition: background-color 300ms;
 }
 
-.landingPage button:hover, .landingPage button:focus {
+.landingPage button:hover, .landingPage button:focus, li:hover, li:focus {
   background-color: #fce47f;
 }
 
-.landingPage button:active {
+.landingPage button:active, li:active {
   background-color: #8ce4cc;
 }
 
-.landingPage img {
-  margin: 5% 0 10% 0;
+/* My Tastings Styles */
+.listContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5% 0;
+}
+
+.likedContainer, .dislikedContainer {
   box-shadow: 3px -3px 0 3px rgb(34, 34, 34), -3px 3px 0  rgb(34, 34, 34);
+  width: 48%;
+  text-align: left;
+  padding-left: 2%;
 }
 
-a {
-  color: #31dbae;
+.chosenRating {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2% 0;
 }
 
+.ratingContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.rowContainer {
+  width: 48%;
+}
+
+li {
+  /* padding: 1px 0 1px 1px; */
+}
+
+/* footer style */
 footer {
-  position: relative;
-  bottom: 0;
 }

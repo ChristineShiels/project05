@@ -1,55 +1,65 @@
+// imports
 import { Component } from 'react';
-import poster from './assets/beerPoster.jpg'
+import Footer from './Footer.js';
+import poster from './assets/beerPoster.jpg';
+import firebase from './firebase.js';
+import { createKeydownFromClick } from 'keydown-from-click';
 
+// class
 class MyTastings extends Component {
     constructor(){
         super()
+        // define states
         this.state = {
-            beers: [
-                {
-                    name: "Dark Matter",
-                    brewery: "Hoyne",
-                    style: "Dark Ale",
-                    container: "bottle",
-                    colour: 8,
-                    clarity: 4,
-                    head: 4,
-                    scentIntensity: 6,
-                    scentOverall: "sweet",
-                    body: 7,
-                    carbonation: 3,
-                    finishLength: 4,
-                    finishIntensity: 3,
-                    finishOverall: "bitter",
-                    freshness: 7,
-                    drinkAgain: "yes",
-                },
-                {
-                    name: "Park Life",
-                    brewery: "Bomber",
-                    style: "Passionfruit Ale",
-                    container: "can",
-                    colour: 2,
-                    clarity: 4,
-                    head: 2,
-                    scentIntensity: 8,
-                    scentOverall: "sweet",
-                    body: 5,
-                    carbonation: 7,
-                    finishLength: 4,
-                    finishIntensity: 4,
-                    finishOverall: "sweet",
-                    freshness: 7,
-                    drinkAgain: "no",
-                }
-
-            ],
+            beers: [],
             rating: []
         }
-
 }
 
-    //show the ratings for the selected beer
+componentDidMount() {
+    // reference database
+    const dbRef = firebase.database().ref();
+    // get data from database
+    dbRef.on('value', (data) => {
+        // put it in an object
+        const firebaseDataObject = data.val();
+        console.log("firebase Object", firebaseDataObject);
+
+        // make a new array
+        let beerArray = [];
+        // use for in loop to extract key and value of object
+        for (let beerKey in firebaseDataObject.beers) {
+            const beerObject = firebaseDataObject.beers[beerKey];
+            // format it and push into a new array
+            const formattedObject = {
+                id: beerKey,
+                name: beerObject.name,
+                brewery: beerObject.brewery,
+                style: beerObject.style,
+                container: beerObject.container,
+                colour: beerObject.colour,
+                clarity: beerObject.clarity,
+                head: beerObject.head,
+                scentIntensity: beerObject.scentIntensity,
+                scentOverall: beerObject.scentOverall,
+                body: beerObject.body,
+                carbonation: beerObject.carbonation,
+                finishLength: beerObject.finishLength,
+                finishIntensity: beerObject.finishIntensity,
+                finishOverall: beerObject.finishOverall,
+                freshness: beerObject.freshness,
+                drinkAgain: beerObject.drinkAgain,
+            };
+            beerArray.push(formattedObject)
+        }
+        // set state to current database
+        this.setState({
+        beers: beerArray
+        })
+    })
+}
+
+//show the ratings for the selected beer
 viewRating = (beerIndex) => {
     console.log(beerIndex);
     //make a copy of the beers array so it doesn't get altered
@@ -65,9 +75,17 @@ viewRating = (beerIndex) => {
     })
 }
 
+keydownHandler = createKeydownFromClick(this.viewRating);
+
+// handleKeyDown = (e) => {
+//     if (e.key === "Enter") {
+//         console.log(e);
+//         // this.viewRating(index)           
+//     }
+// }
+
 
     render() {
-        console.log(this.state.rating);
         return (
             <div className="wrapper myTastings">
                 <h2>My Tastings</h2>
@@ -75,12 +93,13 @@ viewRating = (beerIndex) => {
                     <div className="likedContainer">
                         <h3>Liked:</h3>
                         <ul className="likedList">
-
+                            {/* show beers you would drink again */}
                             {
                                 this.state.beers.map((beer, index) => (
                                     this.state.beers[index].drinkAgain === "yes"
                                     ?
-                                        (<li tabIndex="0" onClick={ () => {this.viewRating(index)}}>
+                                        // make li focussable (sp?) and add onClick function to display rating of clicked beer
+                                        (<li key={beer.id} tabIndex="0" role="button" onKeyDown={this.viewRating} onClick={ () => {this.viewRating(index)}}>
                                         <p>{beer.name}</p>
                                         </li>)
                                     :
@@ -93,12 +112,13 @@ viewRating = (beerIndex) => {
                     <div className="dislikedContainer">
                         <h3>Disliked:</h3>
                         <ul className="dislikedList">
-
+                        {/* show beers you wouldn't drink again */}
                         {
                             this.state.beers.map((beer, index) => (
                                 this.state.beers[index].drinkAgain === "no"
                                 ?
-                                    (<li tabIndex="0" onClick={ () => {this.viewRating(index)}}>
+                                    // make li focussable (sp?) and add onClick function to display rating of clicked beer
+                                    (<li key={beer.id} tabIndex="0" role="button" onClick={ () => {this.viewRating(index)}}>
                                     <p>{beer.name}</p>
                                     </li>)
                                 :
@@ -110,6 +130,7 @@ viewRating = (beerIndex) => {
                 </div>
 
                 {
+                    // show previous rating on page
                     this.state.rating.map((rating) => {
                         return(
                             <div className="chosenRating">
@@ -143,9 +164,7 @@ viewRating = (beerIndex) => {
                 }
 
                 <img src={poster} alt="Advertisment for Van Nostrand's Owl-Musty Beer circa 1906"/>
-                <footer>
-                    <p>Made by Christine Shiels for <a href="www.JunoCollege.com">Juno College</a></p>
-                </footer>
+                <Footer/>
             </div>
         )
     }

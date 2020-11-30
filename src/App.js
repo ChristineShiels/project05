@@ -1,5 +1,6 @@
 import './App.css';
 import { Component } from 'react';
+import firebase from './firebase.js';
 import LandingPage from './LandingPage.js';
 import MyTastings from './MyTastings.js';
 import NewTasting from './NewTasting.js';
@@ -36,13 +37,11 @@ displayNewTasting = () => {
   render() {
       return (
         <div className="wrapper">
-          
+
           {this.state.landingPage ? <LandingPage displayMyTastings={() => {this.displayMyTastings()}} displayNewTasting={() => {this.displayNewTasting()}}/> : null}
           {this.state.myTastings ? <MyTastings/> : null}
           {this.state.newTasting ? <NewTasting/> : null}
-          {/* <footer>
-            <p>Made by Christine Shiels for <a href="www.JunoCollege.com">Juno College</a></p>
-          </footer> */}
+          
         </div>
       )
   }

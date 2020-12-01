@@ -36,7 +36,7 @@ displayNewTasting = () => {
 
   render() {
       return (
-        <div className="wrapper">
+        <div className="wrapper" >
 
           {this.state.landingPage ? <LandingPage displayMyTastings={() => {this.displayMyTastings()}} displayNewTasting={() => {this.displayNewTasting()}}/> : null}
           {this.state.myTastings ? <MyTastings/> : null}

@@ -1,9 +1,9 @@
 // imports
 import { Component } from 'react';
 import Footer from './Footer.js';
+import ChosenTasting from './ChosenTasting.js';
 import poster from './assets/beerPoster.jpg';
 import firebase from './firebase.js';
-import { createKeydownFromClick } from 'keydown-from-click';
 
 // class
 class MyTastings extends Component {
@@ -23,7 +23,6 @@ componentDidMount() {
     dbRef.on('value', (data) => {
         // put it in an object
         const firebaseDataObject = data.val();
-        console.log("firebase Object", firebaseDataObject);
 
         // make a new array
         let beerArray = [];
@@ -61,7 +60,6 @@ componentDidMount() {
 
 //show the ratings for the selected beer
 viewRating = (beerIndex) => {
-    console.log(beerIndex);
     //make a copy of the beers array so it doesn't get altered
     const copyOfBeerArray = [...this.state.beers];
     //filter through the array copy - store selected rating in a variable
@@ -75,19 +73,9 @@ viewRating = (beerIndex) => {
     })
 }
 
-keydownHandler = createKeydownFromClick(this.viewRating);
-
-// handleKeyDown = (e) => {
-//     if (e.key === "Enter") {
-//         console.log(e);
-//         // this.viewRating(index)           
-//     }
-// }
-
-
     render() {
         return (
-            <div className="wrapper myTastings">
+            <div className="myTastings">
                 <h2>My Tastings</h2>
                 <div className="listContainer">
                     <div className="likedContainer">
@@ -99,7 +87,7 @@ keydownHandler = createKeydownFromClick(this.viewRating);
                                     this.state.beers[index].drinkAgain === "yes"
                                     ?
                                         // make li focussable (sp?) and add onClick function to display rating of clicked beer
-                                        (<li key={beer.id} tabIndex="0" role="button" onKeyDown={this.viewRating} onClick={ () => {this.viewRating(index)}}>
+                                        (<li key={beer.id} tabIndex="0" role="button" onKeyDown={ () => {this.viewRating(index)}} onClick={ () => {this.viewRating(index)}}>
                                         <p>{beer.name}</p>
                                         </li>)
                                     :
@@ -118,7 +106,7 @@ keydownHandler = createKeydownFromClick(this.viewRating);
                                 this.state.beers[index].drinkAgain === "no"
                                 ?
                                     // make li focussable (sp?) and add onClick function to display rating of clicked beer
-                                    (<li key={beer.id} tabIndex="0" role="button" onClick={ () => {this.viewRating(index)}}>
+                                    (<li key={beer.id} tabIndex="0" role="button" onKeyDown={ () => {this.viewRating(index)}} onClick={ () => {this.viewRating(index)}}>
                                     <p>{beer.name}</p>
                                     </li>)
                                 :
@@ -130,35 +118,14 @@ keydownHandler = createKeydownFromClick(this.viewRating);
                 </div>
 
                 {
-                    // show previous rating on page
-                    this.state.rating.map((rating) => {
+                    // show chosen tasting on page
+                    this.state.rating.map((beer, index) => {
                         return(
-                            <div className="chosenRating">
-                                <h2>{rating.name}</h2>
-                                <h4>A {rating.style} by {rating.brewery} Brewery</h4>
-                                <p>Poured from a {rating.container}</p>
-                                <div className="ratingContainer">
-                                    <div className="rowContainer">
-                                        👁
-                                        <p>Colour: {rating.colour}</p>
-                                        <p>Clarity: {rating.clarity}</p>
-                                        <p>Head Retention / Lacing: {rating.head}</p>
-                                        👃
-                                        <p>Intensity: {rating.scentIntensity}</p>
-                                        <p>Overall Impresseion: {rating.scentOverall}</p>
-                                    </div>
-                                    <div className="rowContainer">
-                                        👄
-                                        <p>Body: {rating.body}</p>
-                                        <p>Carbonation: {rating.carbonation}</p>
-                                        🔚
-                                        <p>Length: {rating.finishLength}</p>
-                                        <p>Intensity: {rating.finishIntensity}</p>
-                                        <p>Overall Impression: {rating.finishOverall}</p>
-                                        <p>Freshness: {rating.freshness}</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <ul key={index}>
+                                <li key={index}>
+                                    <ChosenTasting tasting={beer}/>
+                                </li>
+                            </ul>
                         )
                     })
                 }

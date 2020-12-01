@@ -27,12 +27,11 @@ body {
 
 .wrapper {
   max-width: 1280px;
-  width: 85%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 100vh;
 }
 
 ul {
@@ -40,12 +39,12 @@ ul {
 }
 
 h1{
-  font-family: 'Oleo Script', cursive;
+  font-family: 'Oleo Script', serif;
   font-size: 10rem;
   margin: 2% 0;
 }
 
-h2, h4, button {
+h2, h4, button, .textInputs label {
   font-family: 'Corben', cursive;
 }
 
@@ -60,11 +59,7 @@ h4 {
   margin: 0;
 }
 
-.myTastings h2{
-  font-size: 4rem;
-}
-
-img {
+.landingPage img, .myTastings img {
   margin: 5% 0 10% 0;
   box-shadow: 3px -3px 0 3px rgb(34, 34, 34), -3px 3px 0  rgb(34, 34, 34);
 }
@@ -133,9 +128,110 @@ a {
   width: 48%;
 }
 
-li {
-  /* padding: 1px 0 1px 1px; */
+
+/* New Tastings */
+.myTastings h2{
+  font-size: 4rem;
 }
+
+.textInputs {
+  text-align: left;
+  box-shadow: 3px -3px 0 3px rgb(34, 34, 34);
+}
+
+.inputRowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5% 0;
+}
+
+input[type=text] {
+  margin-right: 3%;
+  padding: 5px;
+  border: none;
+  color:  rgb(34, 34, 34);
+  font-family: 'Pompiere', sans-serif;
+  font-weight: bold;
+  background: transparent;
+  box-shadow:  -3px 3px 0  rgb(34, 34, 34);
+}
+
+.textInputs h4 {
+  text-align: center;
+  margin: 5% 0;
+}
+
+
+input[type=radio] {
+  position: absolute;
+  opacity: 0;
+}
+
+.radioRowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.radioContainer {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.radioContainer:focus,
+.radioContainer:hover {
+  background: #fce47f;
+}
+
+input[type=text]:focus {
+  background: #e6e6e6;
+}
+
+
+
+.beerColour {
+  background-image: linear-gradient(100deg, #fbe3a0 0%, #c16a32 40%, #5e2a19 75%, #2c2e35 100%);
+  border: solid 2px #e6e6e6;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 5% 0;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.beerColour label {
+  font-size: 1.95rem;
+  display: inline-block;
+  cursor: pointer;
+  padding: 5% 0 5% 4%;
+}
+
+.beerColour label {
+  color: white;
+  text-shadow: 0 2px 4px rgba(34, 34, 34, 0.5 );
+}
+
+.beerColour label:last-of-type {
+  padding-right: 4%;
+}
+
+.beerColour input[type=radio]:checked + label,
+.beerColour input[type=radio]:focus + label,
+.beerColour input[type=radio]:hover + label {
+  color: #8ce4cc;
+  text-shadow: 0 2px 4px #5e2a19;
+}
+
+/* #ccc8ce #675f6b 9a929e */
+
 
 /* footer style */
 footer {

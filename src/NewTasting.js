@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import Footer from './Footer.js';
+import RadioRow from './RadioRow.js';
+import RadioBar from './RadioBar.js';
 import bottle from './assets/bottle.png';
 import can from './assets/can.png';
 import tap from './assets/tap.png';
@@ -30,32 +32,25 @@ class NewTasting extends Component {
                             <label htmlFor="style">What style is your beer?</label>
                             <input type="text" id="style" name="style" placeholder="Sour, Gose, Porter, etc" required/>
                         </div>
-                        {/* Radio button icons */}
+                        {/* Radio button icon row */}
                         <h4>What did your beer come in?</h4>
-                        <div className="radioRowContainer">
-                            <div className="radioContainer" tabIndex="0">
-                                <input type="radio" id="containerOne" name="container" value="bottle"/>
-                                <label htmlFor="containerOne">
-                                    <img src={bottle} alt="Beer Bottle" width="20px"/>Bottle</label>
-                            </div>
-                            <div className="radioContainer" tabIndex="0">
-                                <input type="radio" id="containerTwo" name="container" value="can"/>
-                                <label htmlFor="containerTwo">
-                                    <img src={can} alt="Beer Can" width="35px"/>Can</label>
-                            </div>
-                            <div className="radioContainer" tabIndex="0">
-                                <input type="radio" id="containerThree" name="container" value="tap"/>
-                                <label htmlFor="containerThree">
-                                    <img src={tap} alt="Beer Tap" width="25px"/>Tap</label>
-                            </div>
-                        </div>
+                        <RadioRow rowId="container"
+                            pictureOne={bottle}
+                            pictureTwo={can}
+                            pictureThree={tap}
+                            valueOne="bottle"
+                            valueTwo="can"
+                            valueThree="tap"
+                            widthOne="20px"
+                            widthTwo="35px"
+                            widthThree="25px"/>
                     </div>
                     <h5>Pour your beer into a clean glass and give it a good look:</h5>
                     <div className="heading">
                         <img src={eye} alt="Eye icon"/>
                         <h6>Appearance</h6>
                     </div>
-                    {/* <input type="radio"/> */}
+                    {/* since this form element is different than the rest, I didn't make a seperate component for it */}
                     <h4 className="formLabel" >Colour:</h4>
                     <div className="beerColour radioBar formSection">
                         <input type="radio" id="colourOne" name="colour" value="straw"/>
@@ -73,34 +68,23 @@ class NewTasting extends Component {
                     </div>
                     <h4 className="formLabel" >Clarity:</h4>
                     <div className="clarity formSection">
-                        <div className="radioRowContainer">
-                            <div className="radioContainer" tabIndex="0">
-                                <input type="radio" id="clarityOne" name="clarity" value="clear"/>
-                                <label htmlFor="clarityOne">
-                                    <img src={diamond} alt="Diamond" width="75px"/>Clear</label>
-                            </div>
-                            <div className="radioContainer" tabIndex="0">
-                                <input type="radio" id="clarityTwo" name="clarity" value="hazy"/>
-                                <label htmlFor="clarityTwo">
-                                    <img src={hazy} alt="Steam Icon" width="90px"/>Hazy</label>
-                            </div>
-                            <div className="radioContainer" tabIndex="0">
-                                <input type="radio" id="clarityThree" name="clarity" value="cloudy"/>
-                                <label htmlFor="clarityThree">
-                                    <img src={cloud} alt="Cloud" width="90px"/>Cloudy</label>
-                            </div>
-                        </div>
+                    <RadioRow rowId="clarity"
+                            pictureOne={diamond}
+                            pictureTwo={hazy}
+                            pictureThree={cloud}
+                            valueOne="clear"
+                            valueTwo="hazy"
+                            valueThree="cloudy"
+                            widthOne="75px"
+                            widthTwo="90px"
+                            widthThree="90px"/>
                     </div>
                     <h4 className="formLabel" >Head Retention and Lacing:</h4>
-                    <div className="formSection">
-                        <div className="beerHead radioBar">
-                            <input type="radio" id="headOne" name="head" value="poor"/>
-                                <label htmlFor="headOne">Poor</label>
-                            <input type="radio" id="headTwo" name="head" value="good"/>
-                                <label htmlFor="headTwo">Good</label>
-                            <input type="radio" id="headThree" name="head" value="persistent"/>
-                                <label htmlFor="headThree">Persistent</label>
-                        </div>
+                    <div className="beerHead formSection">
+                        <RadioBar barId="head"
+                            valueOne="poor"
+                            valueTwo="good"
+                            valueThree="persistent"/>
                     </div>
                 </form>
                 <Footer/>

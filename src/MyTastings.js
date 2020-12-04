@@ -23,7 +23,6 @@ componentDidMount() {
     dbRef.on('value', (data) => {
         // put it in an object
         const firebaseDataObject = data.val();
-        console.log(firebaseDataObject);
         // make a new array
         let beerArray = [];
         // use for in loop to extract key and value of object
@@ -51,12 +50,10 @@ componentDidMount() {
             };
             beerArray.push(formattedObject)
         }
-        console.log(beerArray);
         // set state to current database
         this.setState({
         beers: beerArray
         })
-        console.log("this", this.state.beers);
     })
 }
 
@@ -123,7 +120,7 @@ viewRating = (beerIndex) => {
                     // show chosen tasting on page
                     this.state.rating.map((beer, index) => {
                         return(
-                            <ul key={index}>
+                            <ul key={beer.id}>
                                 <li key={index}>
                                     <ChosenTasting tasting={beer}/>
                                 </li>

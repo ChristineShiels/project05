@@ -67,7 +67,8 @@ handleAdd = (e) => {
     e.preventDefault();
     const dbRef = firebase.database().ref();
     dbRef.push(this.state)
-}
+    }
+
 
 // event handler for !== checkboxes
 handleChange = (e) => {
@@ -76,7 +77,6 @@ handleChange = (e) => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    console.log(name, value);
     // update state with info from click
     this.setState({
         [name]: value
@@ -95,7 +95,6 @@ handleCheckAroma = (e) => {
     // add to array if true, remove if false
     checked === true ? copyOfAromasArray.push(value) : copyOfAromasArray.splice(index,1);
     // update state with info from click
-    console.log(copyOfAromasArray);
     this.setState({
         aromas: copyOfAromasArray
     })
@@ -112,7 +111,6 @@ handleCheckFlavours = (e) => {
     // add to array if true, remove if false
     checked === true ? copyOfFlavoursArray.push(value) : copyOfFlavoursArray.splice(index,1);
     // update state with info from click
-    console.log(copyOfFlavoursArray);
     this.setState({
         flavours: copyOfFlavoursArray
     })
@@ -127,7 +125,7 @@ handleCheckFlavours = (e) => {
                 {/* start of form */}
                 <form>
                     <section className="textInputs">
-                        <TextInputs/>
+                        <TextInputs change={this.handleChange}/>
                         {/* Radio button icon row */}
                         <h4>What did your beer come in?</h4>
                         <div className="container" onChange={this.handleChange}>

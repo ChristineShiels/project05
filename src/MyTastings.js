@@ -8,12 +8,12 @@ import firebase from './firebase.js';
 // class
 class MyTastings extends Component {
     constructor(){
-        super()
+        super();
         // define states
         this.state = {
             beers: [],
             rating: []
-        }
+        };
 }
 
 componentDidMount() {
@@ -23,16 +23,16 @@ componentDidMount() {
     dbRef.on('value', (data) => {
         // put it in an object
         const firebaseDataObject = data.val();
-
+        console.log(firebaseDataObject);
         // make a new array
         let beerArray = [];
         // use for in loop to extract key and value of object
-        for (let beerKey in firebaseDataObject.beers) {
-            const beerObject = firebaseDataObject.beers[beerKey];
+        for (let beerKey in firebaseDataObject) {
+            const beerObject = firebaseDataObject[beerKey];
             // format it and push into a new array
             const formattedObject = {
                 id: beerKey,
-                name: beerObject.name,
+                beerName: beerObject.beerName,
                 brewery: beerObject.brewery,
                 style: beerObject.style,
                 container: beerObject.container,
@@ -40,21 +40,23 @@ componentDidMount() {
                 clarity: beerObject.clarity,
                 head: beerObject.head,
                 scentIntensity: beerObject.scentIntensity,
-                scentOverall: beerObject.scentOverall,
+                scentBalance: beerObject.scentBalance,
+                aromas: beerObject.aromas,
                 body: beerObject.body,
                 carbonation: beerObject.carbonation,
-                finishLength: beerObject.finishLength,
-                finishIntensity: beerObject.finishIntensity,
-                finishOverall: beerObject.finishOverall,
-                freshness: beerObject.freshness,
+                flavourBalance: beerObject.flavourBalance,
+                flavourIntensity: beerObject.flavourIntensity,
+                flavours: beerObject.flavours,
                 drinkAgain: beerObject.drinkAgain,
             };
             beerArray.push(formattedObject)
         }
+        console.log(beerArray);
         // set state to current database
         this.setState({
         beers: beerArray
         })
+        console.log("this", this.state.beers);
     })
 }
 
@@ -75,7 +77,7 @@ viewRating = (beerIndex) => {
 
     render() {
         return (
-            <div className="myTastings">
+            <section className="myTastings">
                 <h2>My Tastings</h2>
                 <div className="listContainer">
                     <div className="likedContainer">
@@ -88,7 +90,7 @@ viewRating = (beerIndex) => {
                                     ?
                                         // make li focussable (sp?) and add onClick function to display rating of clicked beer
                                         (<li key={beer.id} tabIndex="0" role="button" onKeyDown={ () => {this.viewRating(index)}} onClick={ () => {this.viewRating(index)}}>
-                                        <p>{beer.name}</p>
+                                        <p>{beer.beerName}</p>
                                         </li>)
                                     :
                                         null
@@ -107,7 +109,7 @@ viewRating = (beerIndex) => {
                                 ?
                                     // make li focussable (sp?) and add onClick function to display rating of clicked beer
                                     (<li key={beer.id} tabIndex="0" role="button" onKeyDown={ () => {this.viewRating(index)}} onClick={ () => {this.viewRating(index)}}>
-                                    <p>{beer.name}</p>
+                                    <p>{beer.beerName}</p>
                                     </li>)
                                 :
                                     null
@@ -130,9 +132,9 @@ viewRating = (beerIndex) => {
                     })
                 }
 
-                <img src={poster} alt="Advertisment for Van Nostrand's Owl-Musty Beer circa 1906"/>
+                <img className="largeImg"src={poster} alt="Advertisment for Van Nostrand's Owl-Musty Beer circa 1906"/>
                 <Footer/>
-            </div>
+            </section>
         )
     }
 }

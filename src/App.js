@@ -1,9 +1,9 @@
 import './App.css';
 import { Component } from 'react';
-import firebase from './firebase.js';
 import LandingPage from './LandingPage.js';
 import MyTastings from './MyTastings.js';
 import NewTasting from './NewTasting.js';
+import BackArrow from './BackArrow.js';
 
 
 class App extends Component {
@@ -17,32 +17,48 @@ class App extends Component {
 
 }
 
-displayMyTastings = () => {
+  displayMyTastings = () => {
+      this.setState({
+          myTastings: !this.state.myTastings,
+          landingPage: !this.state.landingPage
+      })
+  }
+
+  displayNewTasting = () => {
     this.setState({
+      newTasting: !this.state.newTasting,
+      landingPage: !this.state.landingPage
+    })
+  }
+
+  displayLandingPage = () => {
+    if (this.state.myTastings === true) {
+      this.setState({
         myTastings: !this.state.myTastings,
         landingPage: !this.state.landingPage
     })
-}
+    }else if (this.state.newTasting === true) {
+        this.setState({
+          newTasting: !this.state.newTasting,
+          landingPage: !this.state.landingPage
+      })
+    }
+  }
 
-displayNewTasting = () => {
-  this.setState({
-      newTasting: !this.state.newTasting,
-      landingPage: !this.state.landingPage
-  })
-}
+
 
 
 
 
   render() {
       return (
-        <div className="wrapper" >
-
+        <main className="wrapper" >
+          <BackArrow back={this.displayLandingPage}/>
+          <h1>tApp</h1>
           {this.state.landingPage ? <LandingPage displayMyTastings={() => {this.displayMyTastings()}} displayNewTasting={() => {this.displayNewTasting()}}/> : null}
           {this.state.myTastings ? <MyTastings/> : null}
           {this.state.newTasting ? <NewTasting/> : null}
-          
-        </div>
+        </main>
       )
   }
 }

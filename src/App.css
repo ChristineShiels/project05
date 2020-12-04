@@ -26,7 +26,7 @@ body {
 }
 
 .wrapper {
-  max-width: 1280px;
+  max-width: 1000px;
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -75,7 +75,7 @@ h6 {
   font-weight: 300;
 }
 
-.landingPage img, .myTastings img {
+.largeImg {
   margin: 5% 0 10% 0;
   box-shadow: 3px -3px 0 3px rgb(34, 34, 34), -3px 3px 0  rgb(34, 34, 34);
 }
@@ -90,7 +90,7 @@ a {
   max-height: 100vh;
 }
 
-.landingPage button {
+button {
   margin: 2.5% 0 5% 0;
   padding: 2.5% 0;
   width: 55vw;
@@ -103,15 +103,33 @@ a {
   transition: background-color 300ms;
 }
 
-.landingPage button:hover, .landingPage button:focus, li:hover, li:focus {
+button:hover, button:focus, .listContainer li:hover, .listContainer li:focus {
   background-color: #fce47f;
 }
 
-.landingPage button:active, li:active {
+button:active, .listContainer li:active {
   background-color: #8ce4cc;
 }
 
+.backArrow {
+  width: 50px;
+  position: fixed;
+  bottom: 40px;
+  left: 15px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 50px;
+}
+
 /* My Tastings Styles */
+.myTastings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .listContainer {
   width: 100%;
   display: flex;
@@ -138,18 +156,30 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 2px;
 }
 
 .rowContainer {
   width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.tastingImg {
+  width: 60%;
+}
+
+.nose {
+  width: 45%;
+}
+
+.aromaFlavours {
+  margin: 0;
+  padding: 0;
+}
 
 /* New Tastings */
-.myTastings h2{
-  /* font-size: 4rem; */
-}
-
 form {
   width: 90vw;
 }
@@ -159,6 +189,11 @@ form {
   text-align: left;
   box-shadow: 3px -3px 0 3px rgb(34, 34, 34);
   padding: 3% 0;
+}
+
+.textInputs h4 {
+  text-align: center;
+  margin: 5% 0;
 }
 
 .inputRowContainer {
@@ -180,42 +215,55 @@ input[type=text] {
   box-shadow: -3px 3px 0  rgb(34, 34, 34);
 }
 
-.textInputs h4 {
-  text-align: center;
-  margin: 5% 0;
-}
-
 input[type=text]:focus {
   background: #8ce4cc;
 }
 
-input[type=radio] {
+.required {
+  text-align: right;
+  padding-right: 3%;
+  text-shadow: 0 1px 1px rgba(34, 34, 34, 1);
+}
+
+input[type=radio],
+input[type=checkbox] {
   position: absolute;
   opacity: 0;
 }
 
-.radioRowContainer input[type=radio] + label {
+input[type=radio] + label,
+input[type=checkbox] + label {
   text-transform: capitalize;
-  padding: 5px 40px;
+  transition: all 300ms;
+}
+
+.radioContainer input[type=radio] + label,
+.checkContainer input[type=checkbox] + label {
+  padding: 5px 20px;
   border-radius: 50px;
 }
 
-.radioRowContainer {
+.radioRowContainer,
+.checkRowContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-end;
 }
 
-.radioContainer {
+.radioContainer,
+.checkContainer {
   display: flex;
   text-align: center;
 }
 
-.radioRowContainer input[type=radio]:focus + label,
-.radioRowContainer input[type=radio]:hover + label,
-.radioRowContainer input[type=radio]:checked + label {
-  background: #fce47f;
+.radioContainer input[type=radio]:focus + label,
+.radioContainer input[type=radio]:hover + label,
+.radioContainer input[type=radio]:checked + label,
+.checkContainer input[type=checkbox]:focus + label,
+.checkContainer input[type=checkbox]:hover + label,
+.checkContainer input[type=checkbox]:checked + label {
+  background: rgba(252, 228, 127, .8);
 }
 
 .heading {
@@ -236,6 +284,7 @@ form img {
   text-align: left;
   box-shadow: 3px -3px 0 3px rgb(34, 34, 34);
   padding: 2% 0;
+  text-transform: capitalize;
 }
 
 .formSection {
@@ -243,13 +292,13 @@ form img {
   width: 100%;
 }
 
-
 .radioBar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border-radius: 10px;
   overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 2px 2px 14px rgba(34, 34, 34, 0.4);
 }
 
 .radioBar label {
@@ -257,12 +306,20 @@ form img {
   display: inline-block;
   cursor: pointer;
   padding: 3% 0 3% 4%;
-  color: white;
+  color:  rgb(34, 34, 34);;
   text-shadow: 0 2px 4px rgba(34, 34, 34, 0.5 );
 }
 
 .radioBar label:last-of-type {
   padding-right: 4%;
+}
+
+.radioBar input[type=radio]:checked + label,
+.radioBar input[type=radio]:focus + label,
+.radioBar input[type=radio]:hover + label {
+  text-shadow: 3px 3px 15px rgba(140, 228, 204, 1), -3px 3px 15px rgba(140, 228, 204, 1), 3px -3px 15px rgba(140, 228, 204, 1), -3px -3px 15px rgba(140, 228, 204, 1);
+  text-decoration-line: underline;
+  text-underline-offset: 8px;
 }
 
 .beerColour {
@@ -272,31 +329,60 @@ form img {
 .beerColour label{
   font-size: 1.95rem;
   padding: 5% 0 5% 4%;
-
+  color: white;
 }
 
 .beerColour input[type=radio]:checked + label,
 .beerColour input[type=radio]:focus + label,
 .beerColour input[type=radio]:hover + label {
-  color: #8ce4cc;
-  text-shadow: 0 2px 4px #5e2a19;
+  text-shadow: 2px 2px 4px rgba(34, 34, 34, 1);
 }
 
-.beerHead {
-  border-radius: 10px;
-  background-image: linear-gradient(170deg, #e6e6e6 0%, #a6a6a6 100%);
-}
-
-.beerHead input[type=radio]:checked + label,
-.beerHead input[type=radio]:focus + label,
-.beerHead input[type=radio]:hover + label {
-  color: #8ce4cc;
-  text-shadow: 0 2px 2px rgba(34, 34, 34, 1 );
+.drinkAgain{
+  margin-bottom: 5%;
 }
 
 /* footer style */
-footer {
-
+.attribution {
+  font-size: 1.6rem;
 }
 
-/* #a6a6a6 */
+@media (min-width: 600px) {
+  label, .beerColour label, input[type=text], button, .listContainer li, .chosenRating p, h3, h4{
+    font-size: 3rem;
+  }
+  h6{
+    font-size: 5rem;
+  }
+  form{
+    width: auto;
+  }
+  .radioBar label {
+    padding: 2%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .wrapper {
+    width: 85%;
+  }
+  h1{
+    font-size: 15rem;
+  }
+  h2, .landingPage h2{
+    font-size: 6rem;
+  }
+  .inputRowContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5% 0;
+  }
+  .radioBar label {
+    padding: 5 0 2 0;
+  }
+  .chosenRating p {
+    font-size: 4rem;
+  }
+}

@@ -87,7 +87,7 @@ viewRating = (beerIndex) => {
                                     ?
                                         // make li focussable (sp?) and add onClick function to display rating of clicked beer
                                         (<li key={beer.id} tabIndex="0" role="button" onKeyDown={ () => {this.viewRating(index)}} onClick={ () => {this.viewRating(index)}}>
-                                        <p>{beer.beerName}</p>
+                                        <a href="#tasting"><p>{beer.beerName}</p></a>
                                         </li>)
                                     :
                                         null
@@ -106,7 +106,7 @@ viewRating = (beerIndex) => {
                                 ?
                                     // make li focussable (sp?) and add onClick function to display rating of clicked beer
                                     (<li key={beer.id} tabIndex="0" role="button" onKeyDown={ () => {this.viewRating(index)}} onClick={ () => {this.viewRating(index)}}>
-                                    <p>{beer.beerName}</p>
+                                        <a href="#tasting"><p>{beer.beerName}</p></a>
                                     </li>)
                                 :
                                     null
@@ -115,7 +115,7 @@ viewRating = (beerIndex) => {
                         </ul>
                     </div>
                 </div>
-
+                <div id="tasting">
                 {
                     // show chosen tasting on page
                     this.state.rating.map((beer, index) => {
@@ -128,7 +128,7 @@ viewRating = (beerIndex) => {
                         )
                     })
                 }
-
+                </div>
                 <img className="largeImg"src={poster} alt="Advertisment for Van Nostrand's Owl-Musty Beer circa 1906"/>
                 <Footer/>
             </section>

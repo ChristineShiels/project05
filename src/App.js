@@ -24,6 +24,13 @@ class App extends Component {
       })
   }
 
+  displayMyNewTasting = () => {
+    this.setState({
+        myTastings: !this.state.myTastings,
+        newTasting: !this.state.newTasting
+    })
+}
+
   displayNewTasting = () => {
     this.setState({
       newTasting: !this.state.newTasting,
@@ -57,7 +64,7 @@ class App extends Component {
           <h1>tApp</h1>
           {this.state.landingPage ? <LandingPage displayMyTastings={() => {this.displayMyTastings()}} displayNewTasting={() => {this.displayNewTasting()}}/> : null}
           {this.state.myTastings ? <MyTastings/> : null}
-          {this.state.newTasting ? <NewTasting/> : null}
+          {this.state.newTasting ? <NewTasting myTastings={() => {this.displayMyNewTasting()}}/> : null}
         </main>
       )
   }

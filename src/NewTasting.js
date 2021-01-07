@@ -67,6 +67,7 @@ handleAdd = (e) => {
     e.preventDefault();
     const dbRef = firebase.database().ref();
     dbRef.push(this.state)
+    this.props.myTastings();
     }
 
 
@@ -127,7 +128,7 @@ handleCheckFlavours = (e) => {
                     <section className="textInputs">
                         <TextInputs change={this.handleChange}/>
                         {/* Radio button icon row */}
-                        <h4>What did your beer come in?</h4>
+                        <h4>What did your beer come in?*</h4>
                         <div className="container" onChange={this.handleChange}>
                         <RadioRow rowId="container"
                             pictureOne={bottle}
@@ -147,9 +148,9 @@ handleCheckFlavours = (e) => {
                         <img src={eye} alt="Eye icon"/>
                         <h6>Appearance</h6>
                     </div>
-                    <h4 className="formLabel">Colour:</h4>
-                    <ColourBar/>
-                    <h4 className="formLabel" >Clarity:</h4>
+                    <h4 className="formLabel">Colour:*</h4>
+                    <ColourBar change={this.handleChange}/>
+                    <h4 className="formLabel" >Clarity:*</h4>
                     <RadioRow
                         rowId="clarity"
                         pictureOne={diamond}
@@ -162,7 +163,7 @@ handleCheckFlavours = (e) => {
                         widthTwo="90px"
                         widthThree="90px"
                         change={this.handleChange}/>
-                    <h4 className="formLabel" >Head Retention and Lacing:</h4>
+                    <h4 className="formLabel" >Head Retention and Lacing:*</h4>
                     <RadioBar
                         barId="head"
                         valueOne="poor"
@@ -174,7 +175,7 @@ handleCheckFlavours = (e) => {
                         <img src={smell} alt="Nose icon"/>
                         <h6>Scent</h6>
                     </div>
-                    <h4 className="formLabel" >Balance:</h4>
+                    <h4 className="formLabel" >Balance:*</h4>
                     <RadioRow
                         rowId="scentBalance"
                         pictureOne={sweet}
@@ -187,15 +188,15 @@ handleCheckFlavours = (e) => {
                         widthTwo="90px"
                         widthThree="90px"
                         change={this.handleChange}/>
-                    <h4 className="formLabel" >Intensity:</h4>
+                    <h4 className="formLabel" >Intensity:*</h4>
                     <RadioBar
                         barId="scentIntensity"
                         valueOne="faint"
                         valueTwo="aromatic"
                         valueThree="strong"
                         change={this.handleChange}/>
-                    <h4 className="formLabel" >Aromas:</h4>
-                    <h6>Choose all that apply</h6>
+                    <h4 className="formLabel" >Aromas:*</h4>
+                    <h6>Choose at least one of the following</h6>
                     <section className="aromas formSection" >
                         <Checkboxes
                             rowId="aromas"
@@ -278,7 +279,7 @@ handleCheckFlavours = (e) => {
                         <img src={mouthfeel} alt="Taste icon"/>
                         <h6>Mouthfeel</h6>
                     </div>
-                    <h4 className="formLabel" >Carbonation:</h4>
+                    <h4 className="formLabel" >Carbonation:*</h4>
                     <RadioRow
                         rowId="carbonation"
                         pictureOne={flat}
@@ -291,7 +292,7 @@ handleCheckFlavours = (e) => {
                         widthTwo="70px"
                         widthThree="120px"
                         change={this.handleChange}/>
-                    <h4 className="formLabel" >Body:</h4>
+                    <h4 className="formLabel" >Body:*</h4>
                     <RadioBar
                         barId="body"
                         valueOne="light"
@@ -303,7 +304,7 @@ handleCheckFlavours = (e) => {
                         <img src={taste} alt="Tongue icon"/>
                         <h6>Flavour</h6>
                     </div>
-                    <h4 className="formLabel" >Balance:</h4>
+                    <h4 className="formLabel" >Balance:*</h4>
                     <RadioRow
                         rowId="flavourBalance"
                         pictureOne={sweet}
@@ -316,15 +317,15 @@ handleCheckFlavours = (e) => {
                         widthTwo="90px"
                         widthThree="90px"
                         change={this.handleChange}/>
-                    <h4 className="formLabel" >Intensity:</h4>
+                    <h4 className="formLabel" >Intensity:*</h4>
                     <RadioBar
                         barId="flavourIntensity"
                         valueOne="faint"
                         valueTwo="flavourful"
                         valueThree="strong"
                         change={this.handleChange}/>
-                    <h4 className="formLabel"> Flavours:</h4>
-                    <h6>Choose all that apply</h6>
+                    <h4 className="formLabel"> Flavours:*</h4>
+                    <h6>Choose at least one of the following</h6>
                     <section className="flavours formSection" >
                         <Checkboxes
                             rowId="flavours"
@@ -401,7 +402,7 @@ handleCheckFlavours = (e) => {
                             change={this.handleCheckFlavours}
                             />
                     </section>
-                    <h4 className="formLabel"> Would you drink it again?</h4>
+                    <h4 className="formLabel"> Would you drink it again?*</h4>
                     <section className="radioRowContainer drinkAgain" onChange={this.handleChange}>
                         <div className="radioContainer">
                         <input type="radio" id="drinkAgainOne" name="drinkAgain" value="yes"/>

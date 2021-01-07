@@ -17,6 +17,9 @@ figure{margin:0;}
 /* trying out a mobile first design this time */
 
 /* global styles */
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: 'Pompiere', sans-serif;
   font-size: 2rem;
@@ -82,6 +85,10 @@ h6 {
 
 a {
   color: #31dbae;
+}
+
+a p {
+  color: rgb(34, 34, 34);
 }
 
 /* landing page styles */

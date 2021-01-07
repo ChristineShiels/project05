@@ -5,7 +5,7 @@ class Checkboxes extends Component {
         return (
         <div className="checkRowContainer">
                 <div className="checkContainer">
-                    <input type="checkbox" id={this.props.rowId + "One"} name={this.props.rowId} value={this.props.valueOne} onChange={this.props.change} checked={this.props.check}/>
+                    <input type="checkbox" id={this.props.rowId + "One"} name={this.props.rowId} value={this.props.valueOne} onChange={this.props.change} checked={this.props.check} required/>
                     <label htmlFor={this.props.rowId + "One"}>
                         <img src={this.props.pictureOne} alt={this.props.valueOne} width={this.props.widthOne}/>{this.props.valueOne}</label>
                 </div>

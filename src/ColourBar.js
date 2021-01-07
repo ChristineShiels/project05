@@ -4,8 +4,8 @@ import { Component} from 'react';
 class ColourBar extends Component {
     render() {
         return (
-            <section className="beerColour radioBar formSection" onChange={this.handleChange}>
-                <input type="radio" id="colourOne" name="colour" value="straw" />
+            <section className="beerColour radioBar formSection" onChange={this.props.change}>
+                <input type="radio" id="colourOne" name="colour" value="straw" required/>
                             <label htmlFor="colourOne">Straw</label>
                         <input type="radio" id="colourTwo" name="colour" value="gold" />
                             <label htmlFor="colourTwo">Gold</label>

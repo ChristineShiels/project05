@@ -6,7 +6,7 @@ class RadioBar extends Component {
         return (
             <section className={this.props.barId + " formSection"} onChange={this.props.change}>
                 <div className="radioBar">
-                    <input type="radio" id={this.props.barId + "One"} name={this.props.barId} value={this.props.valueOne}/>
+                    <input type="radio" id={this.props.barId + "One"} name={this.props.barId} value={this.props.valueOne} required/>
                         <label htmlFor={this.props.barId + "One"}>{this.props.valueOne}</label>
                     <input type="radio" id={this.props.barId + "Two"} name={this.props.barId} value={this.props.valueTwo}/>
                         <label htmlFor={this.props.barId + "Two"}>{this.props.valueTwo}</label>

@@ -8,7 +8,7 @@ class RadioRow extends Component {
                 <section className={this.props.rowId + " formSection"} onChange={this.props.change}>
                     <div className="radioRowContainer">
                         <div className="radioContainer">
-                            <input type="radio" id={this.props.rowId + "One"} name={this.props.rowId} value={this.props.valueOne}/>
+                            <input type="radio" id={this.props.rowId + "One"} name={this.props.rowId} value={this.props.valueOne} required/>
                             <label htmlFor={this.props.rowId + "One"}>
                                 <img src={this.props.pictureOne} alt={this.props.valueOne} width={this.props.widthOne}/>{this.props.valueOne}
                             </label>
